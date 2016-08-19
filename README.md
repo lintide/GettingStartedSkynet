@@ -29,6 +29,7 @@ luaservice = root.."service/?.lua;"..root.."test/?.lua;"..root.."GettingStartedS
 * `helloSkynet` 这个程序放在 `GettingStartedSkynet/hello/?.lua` 目录下: `luaservice = ...`
 
 
+
  第一个程序: [hello/helloSkynet.lua](hello/helloSkynet.lua):
 
  ```lua
@@ -39,6 +40,7 @@ luaservice = root.."service/?.lua;"..root.."test/?.lua;"..root.."GettingStartedS
    skynet.exit()
  end)
  ```
+
 
 * 导入 `skynet`
 * 任何服务必须有启动函数 `skynet.start` ，`skynet.start` 需要转入 `function() ... end`
