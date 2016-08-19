@@ -9,9 +9,12 @@
 参照 [Skynet 官方文档](https://github.com/cloudwu/skynet)
 
 ## Hello Skynet
-云风在 Blog 里经常提起，你可以把 Skynet 当成一个操作系统。以下的内容就是基于这一灵感。
+云风在 Blog 里经常提起，你可以把 Skynet 当成一个操作系统。以下的内容正是基于这一灵感，如果你认为有类比不对或表达不清的地方，欢迎你给我提 [issue](https://github.com/lintide/GettingStartedSkynet/issues/new)
 
-在很久很久以前，那还是一个需要自己去电脑城组装电脑的时候，店里的小哥记下你要的配置，组装好后回到家你高高兴兴地开机验货。在 Skynet 里的世界也是一样的，首先你需要一个配置单。以下就是我们第一个 Skynet 的配置单 [hello/config](hello/config)：
+在很久很久以前，那还是一个需要自己去电脑城组装电脑的时代，店里的小哥记下你要的配置，组装好后回到家你高高兴兴地开机验货。在 Skynet 里的世界也是一样的，首先你需要一个配置单。
+
+### 第一台 Skynet 电脑配置单
+[hello/config](hello/config)：
 
 ```lua
 root = "./"
@@ -29,8 +32,8 @@ luaservice = root.."service/?.lua;"..root.."test/?.lua;"..root.."GettingStartedS
 * `helloSkynet` 这个程序放在 `GettingStartedSkynet/hello/?.lua` 目录下: `luaservice = ...`
 
 
-
- 第一个程序: [hello/helloSkynet.lua](hello/helloSkynet.lua):
+### 第一个程序
+[hello/helloSkynet.lua](hello/helloSkynet.lua):
 
  ```lua
  local skynet = require "skynet"
@@ -41,12 +44,11 @@ luaservice = root.."service/?.lua;"..root.."test/?.lua;"..root.."GettingStartedS
  end)
  ```
 
-
 * 导入 `skynet`
-* 任何服务必须有启动函数 `skynet.start` ，`skynet.start` 需要转入 `function() ... end`
+* 任何__服务__必须有启动函数 `skynet.start` ，`skynet.start` 需要转入 `function() ... end` 参数
 * 在启动函数里打印 __Hello Skynet!__ 字符串，然后退出 `skynet.exit()`
 
-验证电脑是否有毛病
+### 验证电脑是否有毛病
 ```
 $ ./skynet GettingStartedSkynet/hello/config
 ```
