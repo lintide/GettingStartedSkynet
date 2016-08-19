@@ -1,0 +1,5 @@
+root = "./"
+thread = 4
+harbor = 0 -- 单点模式
+bootstrap = "snlua helloSkynet"	-- 启动第一个服务
+luaservice = root.."service/?.lua;"..root.."test/?.lua;"..root.."GettingStartedSkynet/hello/?.lua"
