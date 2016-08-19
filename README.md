@@ -99,7 +99,7 @@ skynet.send(winRAR, "lua", "upzip", filename)
 * `skynet.newservice` 创建一个新服务，类似我们在电脑上打开 __winRAR__ 这个软件
 * `skynet.send` 告诉 __winRAR__ 解压文件 `filename`
 
-现实生活中，我们是如何知道 __winRAR__ 软件可以解压缩的呢？大多应该都是听朋友讲的，口口相传。在 skynet 的世界里而你必须告诉 skynet 我有办法解压缩。
+现实生活中，我们是如何知道 __winRAR__ 可以解压缩文件的呢？大多应该都是听朋友讲的，口口相传，而在 skynet 的世界里你必须告诉 skynet 谁有解压缩文件的能力。
 
 [unzip/kuaipo](unzip/kuaipo.lua)
 ```lua
@@ -108,7 +108,7 @@ skynet.dispatch("lua", function(session, source, cmd, filename, ...)
 end)
 ```
 
-你必须通过 `skynet.dispatch` 函数来告诉系统 __winRAR__ 这个软件能干嘛。
+通过调用 `skynet.dispatch` 函数来告诉 skynet 有一个叫 __winRAR__ 软件提供了解压缩文件的__能力__。
 
 读完这一小节，你只要好好理解这三个函数即可：`newservice`, `send`, `dispatch`
 
