@@ -13,7 +13,7 @@
 
 在很久很久以前，那还是一个需要自己去电脑城组装电脑的时候，店里的小哥记下你要的配置，组装好后回到家你高高兴兴地开机验货。在 Skynet 里的世界也是一样的，首先你需要一个配置单。以下就是我们第一个 Skynet 的配置单 [hello/config](hello/config)：
 
-```
+```lua
 root = "./"
 thread = 4
 harbor = 0 -- 单点模式
@@ -31,7 +31,7 @@ luaservice = root.."service/?.lua;"..root.."test/?.lua;"..root.."GettingStartedS
 
  第一个程序: [hello/helloSkynet.lua](hello/helloSkynet.lua):
 
- ```
+ ```lua
  local skynet = require "skynet"
 
  skynet.start(function()
