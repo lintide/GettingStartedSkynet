@@ -112,4 +112,4 @@ end)
 
 读完这一小节，你只要好好理解这三个函数即可：`newservice`, `send`, `dispatch`
 
-注意 (config)[upzip/config] 文件有变化哦，我也还没弄明白其中的道理，你先这样用着吧 :)
+注意 [config](upzip/config) 文件有变化哦，我也还没弄明白其中的道理，你先这样用着吧 :)
