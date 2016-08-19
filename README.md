@@ -62,3 +62,54 @@ $ ./skynet GettingStartedSkynet/hello/config
 ```
 
 恭喜你，我们进入下一个旅程
+
+## 服务
+电脑能给我们提供什么服务？我相信绝大多事的人购买电脑目的是为了学习，个别同志会想办法下下片。说起下片，有个神器 __kuaipo__。
+
+### 下片
+[unzip/kuaipo](unzip/kuaipo.lua) 最重要的就是下载功能了，以下功能仅作模拟，还真下不了片。
+
+```lua
+local kuaipo = {}
+
+-- 快播有下载的功能
+kuaipo.download = function(file)
+  for i=0,100,10 do
+    skynet.error(file .. " downloading... %" .. i)
+    skynet.sleep(10)
+  end
+end
+```
+
+下完片之后我还需要他自动解压缩，祭出盗版软件 __WinRAR__ （我突然发现好久没用过这个鬼东西了，满满都是回忆）。
+
+### 自动解压
+下完片，一般我们都是手动解压缩的。片下多了，一个个点开解压缩也不是办法，得让他自动化。那么问题来了，这是两个不同的软件，怎么让他们沟通起来呢？
+
+```
+kuaipo 对 WinRAR 说：片下好了，麻烦你解压一下。
+```
+
+转换为代码如下 [unzip/kuaipo](unzip/kuaipo.lua)：
+```
+local winRAR = skynet.newservice("winRAR")
+skynet.send(winRAR, "lua", "upzip", filename)
+```
+
+* `skynet.newservice` 创建一个新服务，类似我们在电脑上打开 __winRAR__ 这个软件
+* `skynet.send` 告诉 __winRAR__ 解压文件 `filename`
+
+现实生活中，我们是如何知道 __winRAR__ 软件可以解压缩的呢？大多应该都是听朋友讲的，口口相传。在 skynet 的世界里而你必须告诉 skynet 我有办法解压缩。
+
+[unzip/kuaipo](unzip/kuaipo.lua)
+```
+skynet.dispatch("lua", function(session, source, cmd, filename, ...)
+...
+end)
+```
+
+你必须通过 `skynet.dispatch` 函数来告诉系统 __winRAR__ 这个软件能干嘛。
+
+读完这一小节，你只要好好理解这三个函数即可：`newservice`, `send`, `dispatch`
+
+注意 (config)[upzip/config] 文件有变化哦，我也还没弄明白其中的道理，你先这样用着吧 :)
