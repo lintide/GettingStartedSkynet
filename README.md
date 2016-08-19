@@ -70,7 +70,7 @@ $ ./skynet GettingStartedSkynet/hello/config
 ### 下片
 __kuaipo__ 最重要的就是下载文件的功能了，注意：以下功能仅作模拟，无法真正下片。
 
-[unzip/kuaipo](unzip/kuaipo.lua)
+[unzip/kuaipo.lua](unzip/kuaipo.lua)
 
 ```lua
 local kuaipo = {}
@@ -93,7 +93,7 @@ end
 kuaipo 对 WinRAR 说：片下好了，麻烦你解压一下。
 ```
 
-转换为代码如下 [unzip/kuaipo](unzip/kuaipo.lua)：
+转换为代码如下 [unzip/kuaipo.lua](unzip/kuaipo.lua)：
 ```lua
 local winRAR = skynet.newservice("winRAR")
 skynet.send(winRAR, "lua", "upzip", filename)
@@ -104,7 +104,7 @@ skynet.send(winRAR, "lua", "upzip", filename)
 
 现实生活中，我们是如何知道 __winRAR__ 可以解压缩文件的呢？大多应该都是听朋友讲的，口口相传，而在 skynet 的世界里你必须告诉 skynet 谁有解压缩文件的能力。
 
-[unzip/kuaipo](unzip/kuaipo.lua)
+[unzip/winRAR.lua](unzip/kuaipo.lua)
 ```lua
 skynet.dispatch("lua", function(session, source, cmd, filename, ...)
 ...
