@@ -91,7 +91,7 @@ kuaipo 对 WinRAR 说：片下好了，麻烦你解压一下。
 ```
 
 转换为代码如下 [unzip/kuaipo](unzip/kuaipo.lua)：
-```
+```lua
 local winRAR = skynet.newservice("winRAR")
 skynet.send(winRAR, "lua", "upzip", filename)
 ```
@@ -102,7 +102,7 @@ skynet.send(winRAR, "lua", "upzip", filename)
 现实生活中，我们是如何知道 __winRAR__ 软件可以解压缩的呢？大多应该都是听朋友讲的，口口相传。在 skynet 的世界里而你必须告诉 skynet 我有办法解压缩。
 
 [unzip/kuaipo](unzip/kuaipo.lua)
-```
+```lua
 skynet.dispatch("lua", function(session, source, cmd, filename, ...)
 ...
 end)
