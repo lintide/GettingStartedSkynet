@@ -28,7 +28,7 @@ luaservice = root.."service/?.lua;"..root.."test/?.lua;"..root.."GettingStartedS
 
 * 这是一台四核的电脑: `thread = 4`，如果你预算比较多，搞成8核，16核都可以
 * 单机模式，不跟其它电脑通讯：`harbor = 0`，所以也没有任何网络接口
-* 告诉 Skynet 电脑启动后运行 `helloSkyent` 程序：`bootstrap = "snlua helloSkynet"`
+* 告诉 Skynet 电脑启动后运行 `helloSkynet` 程序：`bootstrap = "snlua helloSkynet"`
 * `helloSkynet` 这个程序放在 `GettingStartedSkynet/hello/?.lua` 目录下: `luaservice = ...`
 
 
@@ -64,10 +64,12 @@ $ ./skynet GettingStartedSkynet/hello/config
 恭喜你，我们进入下一个旅程
 
 ## 服务
-电脑能给我们提供什么服务？我相信绝大多事的人购买电脑目的是为了学习，个别同志会想办法下下片。说起下片，有个神器 __kuaipo__。
+电脑能给我们提供什么服务？我相信绝大多事的人购买电脑目的都是为了学习，个别同志会想办法下下片。说起下片，有个神器 __kuaipo__。
 
 ### 下片
-[unzip/kuaipo](unzip/kuaipo.lua) 最重要的就是下载功能了，以下功能仅作模拟，还真下不了片。
+__kuaipo__ 最重要的就是下载文件的功能了，注意：以下功能仅作模拟，无法真正下片。
+
+[unzip/kuaipo](unzip/kuaipo.lua)
 
 ```lua
 local kuaipo = {}
@@ -81,10 +83,10 @@ kuaipo.download = function(file)
 end
 ```
 
-下完片之后我还需要他自动解压缩，祭出盗版软件 __WinRAR__ （我突然发现好久没用过这个鬼东西了，满满都是回忆）。
+一般下载的文件都是 __.rar__ 格式的，下完片后还需要解压缩，祭出盗版软件 __WinRAR__ （突然发现好久没用过这个鬼东西了，满满都是回忆）。
 
 ### 自动解压
-下完片，一般我们都是手动解压缩的。片下多了，一个个点开解压缩也不是办法，得让他自动化。那么问题来了，这是两个不同的软件，怎么让他们沟通起来呢？
+下完片，一般都需要我们自己手动解压缩。片下多了，一个个点开解压缩也很浪费时间，机智如你，想起了一个好办法，下载完后自动解压缩。那么问题来了，这是两个不同的软件，怎么让他们沟通起来呢？
 
 ```
 kuaipo 对 WinRAR 说：片下好了，麻烦你解压一下。
