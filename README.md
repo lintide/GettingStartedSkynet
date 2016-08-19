@@ -29,7 +29,7 @@ luaservice = root.."service/?.lua;"..root.."test/?.lua;"..root.."GettingStartedS
 * `helloSkynet` 这个程序放在 `GettingStartedSkynet/hello/?.lua` 目录下: `luaservice = ...`
 
 
- 第一个程序: [hello/helloSkyent.lua](hello/helloSkyent.lua):
+ 第一个程序: [hello/helloSkynet.lua](hello/helloSkynet.lua):
 
  ```
  local skynet = require "skynet"
