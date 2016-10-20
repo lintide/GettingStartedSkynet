@@ -5,6 +5,7 @@
 * 安装
 * Hello Skynet
 * 服务
+* 服务广大群众
 
 ## 安装
 参照 [Skynet 官方文档](https://github.com/cloudwu/skynet)
@@ -116,3 +117,71 @@ end)
 读完这一小节，你只要好好理解这三个函数即可：`newservice`, `send`, `dispatch`
 
 注意 [config](upzip/config) 文件有变化哦，我也还没弄明白其中的道理，你先这样用着吧 :)
+
+## Ping Pong
+在进入下一个章节之前，我们先来一个小点心，实现一个非常简单的 c/s 程序，客户端发送`ping`字符串到服务端，服务端收到信息后，回复`pong`。
+
+先来看看服务端代码
+1. 建立服务，并监听`8888`端口
+
+  ```lua
+  gate = skynet.newservice("gate")
+
+  skynet.call(gate, "lua", "open" , {
+    address = "127.0.0.1", -- 监听地址 127.0.0.1
+    port = 8888,    -- 监听端口 8888
+    maxclient = 1024,   -- 最多允许 1024 个外部连接同时建立
+    nodelay = true,     -- 给外部连接设置  TCP_NODELAY 属性
+  })
+  ```
+
+2. 建立连接，接收信息
+  ```lua
+  skynet.dispatch("lua", function(session, source, cmd, subcmd, ...)
+    skynet.error("cmd: "..cmd.."  subcmd: "..subcmd)
+    if cmd == "socket" then
+      if subcmd == "open" then
+        newClient(...)
+
+        ....
+
+  ```
+
+  在`newClient`
+
+
+客户端我是用 nodejs 写的[pingpong/ping.js](pingpong/ping.js)。
+
+1. 建立 socket
+
+  ```javascript
+  const client = net.connect({'host': 'localhost', 'port': 8888}, function(){
+    ...
+  })
+  ```
+
+2. 构造消息，并发送
+
+  ```javascript
+  var message = "ping";
+
+  var pack = new Buffer(2+message.length);
+  pack.writeUInt16BE(message.length, 0);
+  pack.write(message, 2);
+
+  // pack 的数据如下
+  // | 00 04 | 70 69 6e 67 |
+  // | size  |   message   |
+
+  client.write(pack);
+  ```
+
+## 服务广大群众
+
+```
+独乐乐,与人乐乐,孰乐?
+
+-- 《孟子》
+```
+
+随着片越下越多，你在朋友中也建立起了小小名气，人称『毛哥』。正所谓能力越大，责任越大，朋友之间也会让你分享下资源，看完大家有点共同话题，彼此之间可以交流一些经验。

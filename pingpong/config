@@ -1,0 +1,6 @@
+root = "./"
+thread = 4
+harbor = 0 -- 单点模式
+start = "pong"
+bootstrap = "snlua bootstrap"	-- 第一个启动的服务改为 bootstrap 了
+luaservice = root.."service/?.lua;"..root.."test/?.lua;"..root.."GettingStartedSkynet/yunPan/?.lua"
